@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-"""get data from an api"""
+"""export to json"""
+import json
 import requests
 from sys import argv
 
@@ -12,16 +13,21 @@ if __name__ == "__main__":
     if response.status_code == 200 and response_user.status_code == 200:
         data = response.json()
         data_user = response_user.json()
-        name = response_user.json()['name']
-        completed = []
+        username = response_user.json()['username']
 
+        all_tasks = {}
+        list_of_tasks = []
         for task in data:
-            if task['completed'] is True:
-                completed.append(task)
+            task_dict = {}
+            task_dict["task"] = task["title"]
+            task_dict["completed"] = task["completed"]
+            task_dict["username"] = username
 
-        print("Employee {} is done with tasks({}/{}):"
-              .format(name, len(completed), len(data)))
-        for task in completed:
-            print("\t " + task['title'])
+            list_of_tasks.append(task_dict)
+
+        all_tasks["{}".format(argv[1])] = list_of_tasks
+
+        with open("{}.json".format(argv[1]), "w+") as file:
+            json.dump(all_tasks, file)
     else:
         print(f"Error: {response.status_code}, {response_user.status_code}")

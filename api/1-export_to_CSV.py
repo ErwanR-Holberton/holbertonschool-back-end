@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""get data from an api"""
+"""get data and put it in a csv file"""
 import requests
 from sys import argv
 
@@ -11,17 +11,12 @@ if __name__ == "__main__":
 
     if response.status_code == 200 and response_user.status_code == 200:
         data = response.json()
-        data_user = response_user.json()
-        name = response_user.json()['name']
-        completed = []
+        username = response_user.json()['username']
 
-        for task in data:
-            if task['completed'] is True:
-                completed.append(task)
-
-        print("Employee {} is done with tasks({}/{}):"
-              .format(name, len(completed), len(data)))
-        for task in completed:
-            print("\t " + task['title'])
+        with open("{}.csv".format(argv[1]), "w") as file:
+            for task in data:
+                file.write('"{}","{}","{}","{}"\n'
+                           .format(task["userId"], username, task["completed"],
+                                   task["title"]))
     else:
         print(f"Error: {response.status_code}, {response_user.status_code}")
