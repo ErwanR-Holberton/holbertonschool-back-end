@@ -20,4 +20,4 @@ if __name__ == "__main__":
             completed = task.get("completed")
             title = task.get("title")
             file.write('"{}","{}","{}","{}"\n'
-                        .format(id, username, completed, title))
+                       .format(id, username, completed, title))
