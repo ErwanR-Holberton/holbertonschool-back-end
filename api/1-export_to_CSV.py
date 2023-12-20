@@ -11,7 +11,7 @@ if __name__ == "__main__":
 
     if response.status_code == 200 and response_user.status_code == 200:
         data = response.json()
-        username = response_user.json()['username']
+        username = response_user.json().get('username')
 
         formated_data = []
 
