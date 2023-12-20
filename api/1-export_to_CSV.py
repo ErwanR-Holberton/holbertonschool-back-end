@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """get data and put it in a csv file"""
-import requests
 from sys import argv
+import requests
 
 if __name__ == "__main__":
     response = requests.get("https://jsonplaceholder.typicode.com/todos",
