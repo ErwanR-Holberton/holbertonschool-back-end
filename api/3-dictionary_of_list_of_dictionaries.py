@@ -16,7 +16,6 @@ if __name__ == "__main__":
         for user in data_user:
             id = user['id']
             username = user['username']
-            print(id, username)
             list_of_tasks = []
             for task in to_do:
                 if task['userId'] == id:
