@@ -22,6 +22,6 @@ if __name__ == "__main__":
         print("Employee {} is done with tasks({}/{}):"
               .format(name, len(completed), len(data)))
         for task in completed:
-            print("\t " + task['title'])
+            print("\t " + task.get('title'))
     else:
         print(f"Error: {response.status_code}, {response_user.status_code}")
