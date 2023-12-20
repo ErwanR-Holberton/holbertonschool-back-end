@@ -12,11 +12,11 @@ if __name__ == "__main__":
     if response.status_code == 200 and response_user.status_code == 200:
         data = response.json()
         data_user = response_user.json()
-        name = response_user.json()['name']
+        name = response_user.json().get('name')
         completed = []
 
         for task in data:
-            if task['completed'] is True:
+            if task.get('completed') is True:
                 completed.append(task)
 
         print("Employee {} is done with tasks({}/{}):"
