@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """get data from an api"""
-import requests
 from sys import argv
+import requests
 
 if __name__ == "__main__":
     response = requests.get("https://jsonplaceholder.typicode.com/todos",
