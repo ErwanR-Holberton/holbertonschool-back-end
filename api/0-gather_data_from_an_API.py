@@ -19,7 +19,7 @@ if __name__ == "__main__":
         if task.get('completed') is True:
             completed.append(task)
 
-    str1 = "Employee {}".format(name)
+    str1 = "Employee {} ".format(name)
     str2 = "is done with tasks({}/{}):".format(len(completed), len(data))
 
     print(str1 + str2)
