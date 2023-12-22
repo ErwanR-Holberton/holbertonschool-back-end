@@ -4,6 +4,7 @@ import json
 import requests
 from sys import argv
 
+
 if __name__ == "__main__":
     response = requests.get("https://jsonplaceholder.typicode.com/todos",
                             params={"userId": argv[1]})
