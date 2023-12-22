@@ -5,10 +5,10 @@ from sys import argv
 
 
 if __name__ == "__main__":
-    response = requests.get("https://jsonplaceholder.typicode.com/todos",
-                            params={"userId": argv[1]})
-    response_user = requests.get("https://jsonplaceholder.typicode.com/users/"
-                                 + argv[1])
+    url1 = "https://jsonplaceholder.typicode.com/todos"
+    url2 = "https://jsonplaceholder.typicode.com/users/"
+    response = requests.get(url1, params={"userId": argv[1]})
+    response_user = requests.get(url2 + argv[1])
 
     data = response.json()
     username = response_user.json().get('username')
@@ -20,5 +20,6 @@ if __name__ == "__main__":
             id = task.get("userId")
             completed = task.get("completed")
             title = task.get("title")
-            file.write('"{}","{}","{}","{}"\n'
-                       .format(id, username, completed, title))
+            str1 = '"{}","{}"'.format(id, username)
+            str2 = ',"{}","{}"\n'.format(completed, title)
+            file.write(str1 + str2)
